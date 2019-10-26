@@ -1,0 +1,14 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:utils="http://xmlns.jcp.org/jsf/composite/utils">
+<head>
+    <title>Hello JSF 2!</title>
+</head>
+<h:body>
+    <p><span style="color: blue;">#{hello.message}</span></p> 
+    <p><utils:clientInfo/></p>
+    <h:form rendered="#{true}">
+        <h:inputText value=""/> 
+        <h:commandButton value="Click me" action="${hello.doSomething}"/>
+    </h:form>
+</h:body>
+</html>

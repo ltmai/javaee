@@ -1,0 +1,8 @@
+<jboss-deployment-structure>
+  <sub-deployment name="project-server.jar">  
+      <dependencies>
+        <!--module name="org.apache.log4j" export="TRUE"/-->
+        <module name="org.apache.logging.log4j" export="TRUE"/>
+      </dependencies>
+  </sub-deployment>
+</jboss-deployment-structure>

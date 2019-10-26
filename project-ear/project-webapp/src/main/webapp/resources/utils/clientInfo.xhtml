@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:cc="http://xmlns.jcp.org/jsf/composite">
+
+<cc:interface />
+<cc:implementation>
+    <fieldset>
+        <legend>Client information</legend>
+        <ul>
+            <li><b>Requesting host</b>: #{request.remoteHost}</li>
+            <li><b>Query string</b>: #{request.queryString}</li>
+            <li><b>Requesting client type</b>: #{header["User-Agent"]}</li>
+            <li><b>Locale</b>: #{view.locale}</li>
+            <li><b>Session id</b>: #{session.id}</li>
+            <li><b>Context path</b>: #{request.contextPath}</li>
+            <li><b>JSESSIONID cookie</b>: #{cookie.JSESSIONID.value}</li>
+        </ul>
+    </fieldset>
+</cc:implementation>
+
+</html>
