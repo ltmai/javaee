@@ -1,4 +1,4 @@
-package mai.linh.project.server.producer;
+package mai.linh.project.api;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -9,6 +9,11 @@ import javax.inject.Qualifier;
 
 @Qualifier
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ ElementType.TYPE, ElementType.METHOD, ElementType.FIELD, ElementType.PARAMETER})
-public @interface Log4J {
+@Target({ ElementType.TYPE, ElementType.FIELD})
+public @interface ServiceType {
+    Type value();
+    enum Type {
+        DEFAULT,
+        SPECIAL
+    };
 }
