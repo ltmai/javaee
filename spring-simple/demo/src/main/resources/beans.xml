@@ -1,0 +1,63 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+   <!--Register BeanPostProcessor-->
+   <bean class="com.example.demo.PostProcessor"/>
+
+   <bean id = "helloWorld" class = "com.example.demo.HelloWorld" init-method="init" destroy-method="destroy">
+      <property name = "message" value = "Hello World!" />
+   </bean>
+
+   <!--Inheritance-->
+   <bean id="helloWorldUpper" class="com.example.demo.HelloWorldUpper" parent="helloWorld"/>
+
+   <!--Constructor-based dependecy injection-->
+   <bean id = "serviceManager" class = "com.example.demo.ServiceManager">
+      <constructor-arg ref = "service"/>
+   </bean>
+
+   <bean id = "service" class = "com.example.demo.Service"/>
+
+   <!--Inject Collection -->
+   <bean id = "javaCollection" class = "com.example.demo.InjectCollection">
+      
+   <property name = "intList">
+      <list>
+         <value>111</value>
+         <value>222</value>
+         <value>333</value>
+      </list>
+   </property>
+
+   <property name = "stringSet">
+      <set>
+         <value>Apple</value>
+         <value>Oracle</value>
+         <value>Mango</value>
+         <value>Mango</value>
+      </set>
+   </property>
+
+   <property name = "indexMap">
+      <map>
+         <entry key="1" value="One"/>
+         <entry key="2" value="Two"/>
+         <entry key="3" value="Three"/>
+         <entry key="4" value="Four"/>
+      </map>
+   </property>
+   
+   <property name = "properties">
+      <props>
+         <prop key="de">German</prop>
+         <prop key="uk">England</prop>
+         <prop key="fr">France</prop>
+         <prop key="es">Espanol</prop>
+         <prop key="es">Spain</prop>
+      </props>
+   </property>
+</bean>   
+</beans>

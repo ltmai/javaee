@@ -5,6 +5,7 @@ import javax.enterprise.util.AnnotationLiteral;
 /**
  * ServiceSelector
  */
+@SuppressWarnings("all")
 public class ServiceSelector 
     extends AnnotationLiteral<ServiceType> implements ServiceType {
 

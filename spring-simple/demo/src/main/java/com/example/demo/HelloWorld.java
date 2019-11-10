@@ -14,4 +14,12 @@ public class HelloWorld {
     public void setMessage(String message) {
         this.message = message;
     }
+
+    public void init() {
+        System.out.println("[init-method] Initializing bean");
+    }
+
+    public void destroy() {
+        System.out.println("[destroy-method] Destroying bean");
+    }
 }
