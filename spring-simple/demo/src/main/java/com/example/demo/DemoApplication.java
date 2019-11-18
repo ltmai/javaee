@@ -27,9 +27,7 @@ public class DemoApplication {
 			System.out.println(jc.getIntList());
 			System.out.println(jc.getStringSet());
 			System.out.println(jc.getIndexMap());
-			System.out.println(jc.getProperties());
-			
-			
+			System.out.println(jc.getProperties());			
 		}
 	}
 

@@ -13,6 +13,6 @@ public class ServiceBean implements Service
 
     @Override
     public String saySomething() {
-        return "What just happened?";
+        return "[ServiceBean] What just happened?";
     }
 }

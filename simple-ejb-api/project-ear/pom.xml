@@ -17,20 +17,32 @@
 	<dependencies>
 		<dependency>
 			<groupId>mai.linh</groupId> 
+			<artifactId>project-app</artifactId>
+			<version>${project.version}</version>
+			<type>app-client</type>
+		</dependency>			
+		<dependency>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>project-api</artifactId>
 			<version>${project.version}</version>
 			<type>jar</type>
 		</dependency>
 		<dependency>
-			<groupId>mai.linh</groupId> 
+			<groupId>${project.groupId}</groupId> 
 			<artifactId>project-imp</artifactId>
 			<version>${project.version}</version>
 			<type>ejb</type>
-		</dependency>	
+		</dependency>
 	</dependencies>
     
     <build>
         <plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-acr-plugin</artifactId>
+				<version>3.0.0</version>
+				<extensions>true</extensions>
+			</plugin>			
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -42,10 +54,11 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-ear-plugin</artifactId>
-                <version>2.8</version>
+				<artifactId>maven-ear-plugin</artifactId>
+				<version>3.0.2</version>
                 <configuration>
-                    <version>6</version>
+					<version>7</version>
+                    <generateApplicationXml>true</generateApplicationXml>					
                     <defaultLibBundleDir>lib</defaultLibBundleDir>
 					<!--add modules manually-->
 					<finalName>${project.artifactId}</finalName>
@@ -60,6 +73,11 @@
 							<artifactId>project-imp</artifactId>
 							<bundleFileName>project-imp.jar</bundleFileName>
 						</ejbModule>
+                        <appClientModule>
+							<groupId>mai.linh</groupId>
+							<artifactId>project-app</artifactId>
+							<bundleFileName>project-app.jar</bundleFileName>
+						</appClientModule>						
 					</modules>
 					<archive>
 						<manifest>
