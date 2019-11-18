@@ -16,7 +16,7 @@
 	<!--add dependencies manually-->
 	<dependencies>
 		<dependency>
-			<groupId>mai.linh</groupId> 
+			<groupId>${project.groupId}</groupId> 
 			<artifactId>project-app</artifactId>
 			<version>${project.version}</version>
 			<type>app-client</type>
@@ -64,17 +64,17 @@
 					<finalName>${project.artifactId}</finalName>
 					<modules>
 						<jarModule>
-							<groupId>mai.linh</groupId>
+							<groupId>${project.groupId}</groupId>
 							<artifactId>project-api</artifactId>
 							<bundleFileName>project-api.jar</bundleFileName>
 						</jarModule>
 						<ejbModule>
-							<groupId>mai.linh</groupId>
+							<groupId>${project.groupId}</groupId>
 							<artifactId>project-imp</artifactId>
 							<bundleFileName>project-imp.jar</bundleFileName>
 						</ejbModule>
                         <appClientModule>
-							<groupId>mai.linh</groupId>
+							<groupId>${project.groupId}</groupId>
 							<artifactId>project-app</artifactId>
 							<bundleFileName>project-app.jar</bundleFileName>
 						</appClientModule>						

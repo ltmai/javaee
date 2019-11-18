@@ -29,7 +29,7 @@
         <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>mai.linh</groupId>
+      <groupId>${project.groupId}</groupId>
       <artifactId>project-api</artifactId>
       <version>${project.version}</version>
     </dependency>    

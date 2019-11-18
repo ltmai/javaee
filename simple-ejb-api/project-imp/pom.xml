@@ -32,9 +32,9 @@
       <scope>provided</scope>
     </dependency>    
     <dependency>
-      <groupId>mai.linh</groupId>
+      <groupId>${project.groupId}</groupId>
       <artifactId>project-api</artifactId>
-      <version>1.0-SNAPSHOT</version>
+      <version>${project.version}</version>
       <scope>provided</scope>
     </dependency>
   </dependencies>
