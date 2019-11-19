@@ -10,9 +10,8 @@ import mai.linh.project.api.Service;
 @Stateless
 public class ServiceBean implements Service
 {
-
     @Override
-    public String saySomething() {
-        return "[ServiceBean] What just happened?";
+    public String saySomething(String s) {
+        return "[ServiceBean] " + s;
     }
 }

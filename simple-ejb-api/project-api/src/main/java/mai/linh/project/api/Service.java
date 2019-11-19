@@ -17,5 +17,5 @@ public interface Service
      */
     public static final String JDNI_LOOKUP="";
 
-    String saySomething();
+    String saySomething(String s);
 }
