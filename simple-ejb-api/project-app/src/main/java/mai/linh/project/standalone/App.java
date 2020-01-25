@@ -35,7 +35,7 @@ public class App
 
     /**
      * lookupRemoteBean looks up remote bean. The JNDI lookup string is of the form:
-     * ejb:<Application-EAR>/<Module>/<ImplementationBean>!<Interface>
+     * ejb:<application-name>/<module-name>/<bean-name>!<full-qualified-interface-name>
      */
     public static void lookupRemoteBean() throws NamingException {
         final Hashtable<String, String> jndiProperties = new Hashtable<>();

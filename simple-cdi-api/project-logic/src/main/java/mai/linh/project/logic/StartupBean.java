@@ -21,14 +21,16 @@ public class StartupBean
     private Service defaultService;
 
     @Inject @Any
-    Instance<Service> services;
+    Instance<Service> serviceInstance;
 
     @PostConstruct
     public void init() {
         System.out.println("Initializing ...");
-        defaultService.saySomething();
 
-        Service specialService = services.select(new ServiceSelector(ServiceType.Type.SPECIAL)).get();
+        defaultService.saySomething();
+        
+        ServiceType specialServiceAnnotation = new ServiceSelector(ServiceType.Type.SPECIAL);
+        Service specialService = serviceInstance.select(specialServiceAnnotation).get();
         specialService.saySomething();
     }
 

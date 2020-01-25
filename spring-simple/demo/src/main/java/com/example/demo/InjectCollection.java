@@ -5,6 +5,9 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
+/**
+ * Example of injecting collections
+ */
 public class InjectCollection {
    
    List<Integer> intList;

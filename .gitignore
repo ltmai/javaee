@@ -2,6 +2,7 @@
 **/.settings/
 **/.vscode/
 **/.idea/
+**/.sts4-cache/
 **/target/
 **/.classpath
 *.iml
