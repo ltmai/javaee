@@ -14,6 +14,9 @@ import javax.inject.Inject;
 
 import org.apache.logging.log4j.Logger;
 
+import mai.linh.project.server.producer.Log4J;
+import mai.linh.project.server.service.CustomerService;
+
 /**
  * Startup EJB
  */
@@ -34,7 +37,7 @@ public class StartupBean
     @Inject
     private Instance<CustomerService> serviceInstance;
 
-    @Inject
+    @Inject @Log4J
     private Logger logger;
     
     private ScheduledFuture<?> futureDbCleaner;
@@ -55,7 +58,7 @@ public class StartupBean
     }
 
     /**
-     * Scheduled task
+     * Scheduled task executed by executor service
      */
     private void runDbCleaner() 
     {

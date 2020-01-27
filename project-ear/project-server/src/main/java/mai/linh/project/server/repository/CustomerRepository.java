@@ -1,4 +1,4 @@
-package mai.linh.project.server.database;
+package mai.linh.project.server.repository;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,10 +11,10 @@ import javax.persistence.TypedQuery;
 import mai.linh.project.entities.Customer;
 
 /**
- * DBManage
+ * This class implements JPA work on Customer entity 
  */
 @Stateless
-public class DBManager {
+public class CustomerRepository {
 
     @PersistenceContext
     private EntityManager em;

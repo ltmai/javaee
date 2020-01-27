@@ -1,4 +1,4 @@
-package mai.linh.project.server;
+package mai.linh.project.server.service;
 
 import java.util.List;
 
@@ -10,22 +10,23 @@ import javax.inject.Inject;
 import org.apache.logging.log4j.Logger;
 
 import mai.linh.project.entities.Customer;
-import mai.linh.project.server.database.DBManager;
 import mai.linh.project.server.interceptor.Logged;
+import mai.linh.project.server.producer.Log4J;
+import mai.linh.project.server.repository.CustomerRepository;
 
 /**
- * ServiceBean EJB
+ * Implementation of CustomerService
  */
 @Stateless
 public class CustomerServiceBean implements CustomerService
 {
 	@Inject
-    private DBManager db;
+    private CustomerRepository db;
 
     @Resource
     private SessionContext context;
 
-    @Inject
+    @Inject @Log4J 
     private Logger logger;
 
     @Override

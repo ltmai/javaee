@@ -10,7 +10,8 @@ import javax.ejb.Singleton;
 import javax.ejb.Startup;
 
 /**
- * Example of Singleton with container managed concurrency .
+ * Example of Singleton with container managed concurrency (demonstration only).
+ * 
  * The singleton methods are by default annotated with @Lock(LockType.WRITE) so the singleton is 
  * locked to other clients while a client is calling that method.
  * 

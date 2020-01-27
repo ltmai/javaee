@@ -7,13 +7,15 @@ import javax.inject.Inject;
 
 import org.apache.logging.log4j.Logger;
 
+import mai.linh.project.server.producer.Log4J;
+
 /**
  * Handle @Logged events when transaction completes or fails
  */
 @Stateless
 public class LoggedEventListener {
 
-    @Inject
+    @Inject @Log4J
     private Logger logger;
 
 	/**

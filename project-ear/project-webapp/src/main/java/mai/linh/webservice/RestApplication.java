@@ -11,7 +11,7 @@ import javax.ws.rs.core.Application;
  * ProjectApplication
  */
 @ApplicationPath("/ws")
-public class ProjectApplication extends Application
+public class RestApplication extends Application
 {
     @Override
     public Set<Class<?>> getClasses()

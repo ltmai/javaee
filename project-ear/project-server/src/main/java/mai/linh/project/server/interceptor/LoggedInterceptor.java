@@ -10,6 +10,8 @@ import javax.interceptor.InvocationContext;
 
 import org.apache.logging.log4j.Logger;
 
+import mai.linh.project.server.producer.Log4J;
+
 @Logged
 @Interceptor
 public class LoggedInterceptor implements Serializable 
@@ -17,9 +19,9 @@ public class LoggedInterceptor implements Serializable
     private static final long serialVersionUID = 1L;
 
     @Inject
-	Event<String> txListeners;
+	Event<String> event;
 	
-	@Inject
+	@Inject @Log4J
 	private Logger logger;
 
     @AroundInvoke
@@ -30,11 +32,8 @@ public class LoggedInterceptor implements Serializable
 			return invocationContext.proceed();
 		}
 		finally {
-			/**
-			 * success or failure
-			 */
 			logger.info("[interceptor] exiting " + invocationContext.getMethod().getName());
-			txListeners.fire(invocationContext.getMethod().getAnnotation(Logged.class).name());
+			event.fire(invocationContext.getMethod().getAnnotation(Logged.class).name());
 		}
     }
 }

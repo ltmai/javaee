@@ -11,7 +11,7 @@ import org.apache.logging.log4j.Logger;
  */
 public class Log4JProducer {
 
-    @Produces
+    @Produces @Log4J
     public Logger getLogger(InjectionPoint ip) {
         return LogManager.getLogger(ip.getMember().getDeclaringClass().getName());
     }

@@ -13,7 +13,7 @@ import javax.ws.rs.core.Response;
  * WebServices
  */
 @Stateless
-@Path("/dummy")
+@Path("/utils")
 public class WebServices {
 
     @GET

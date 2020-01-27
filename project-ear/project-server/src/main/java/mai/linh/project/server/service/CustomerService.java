@@ -1,9 +1,12 @@
-package mai.linh.project.server;
+package mai.linh.project.server.service;
 
 import java.util.List;
 
 import mai.linh.project.entities.Customer;
 
+/**
+ * Customer service!
+ */
 public interface CustomerService {
     /**
      * Lookup URL to current implementation used by remote clients
