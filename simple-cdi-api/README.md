@@ -1,10 +1,12 @@
 # Example of simple CDI application
 
 Project modules:
-- project-api
-- project-imp
-- project-logic
-- project-ear
+- project-ear : creates project EAR package
+- project-api : provides CDI interface `Service`. 
+- project-imp : CDI implementations of `Service`.
+- project-logic : project logic (main).
+
+This project provides an example of 
 
 ### Instantiate an annotation type with AnnotationLiteral
 https://docs.oracle.com/javaee/7/api/javax/enterprise/util/AnnotationLiteral.html
