@@ -6,13 +6,13 @@ Project modules:
 - project-imp : provides CDI implementation `CustomService` that implements `Service`.
 - project-logic : entry point that invokes `Handler` methods.
 
-This project is an example of using `@Alternative` to select CDI implementation at deployment time. This also refer to 
+This project is an example of using `@Alternative` to select CDI implementation at deployment time. This also refers to 
 my answer on Stackoverflow (https://stackoverflow.com/questions/59295219/cdi-how-to-substitute-an-injected-bean-with-another/)
 
 ## Question on Stackoverflow
 
-Given an API with default injected CDI implementation inside a module (with `beans.xml`) that your code depends on, how can one 
-substitute this default implementation with his own custom one, without changing the module?
+Given an API with default injected CDI implementation inside a module (with `beans.xml`) that your code depends on, how can you 
+substitute this default implementation with your own custom one, without changing the module?
 
 ## Answer
 
