@@ -1,8 +1,4 @@
 TODO 
-- Using template in create/edit/remove/detail.xhtml
-- reuse form: 
-    https://stackoverflow.com/questions/4792862/how-to-include-another-xhtml-in-xhtml-using-jsf-2-0-facelets
-    https://stackoverflow.com/questions/8203739/reusing-a-form-in-two-different-views-jsf
 - Sort by fields 
 - Authentication/Authorization 
 - Add other fields: gender 

@@ -1,0 +1,115 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.prime.com.tr/ui"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html">
+    
+<div>
+    <h:form id="editCustomer" styleClass="form-horizontal" p:role="form">
+
+        <h:inputHidden value="${customerController.id}" />
+
+        <div class="form-group row">
+            <div class="col-sm-2 boxed"></div>
+            <h:outputLabel for="title" class="col-sm-2 control-label">Title</h:outputLabel>
+            <div class="col-sm-6">
+                <h:selectOneMenu class="form-control" id="title" value="#{customerController.customer.title}">
+                    <f:selectItem itemLabel="--" itemValue="" />
+                    <f:selectItem itemValue="Mr." />
+                    <f:selectItem itemValue="Mrs." />
+                    <f:selectItem itemValue="Miss." />
+                    <f:selectItem itemValue="Ms." />
+                    <f:selectItem itemValue="Dr." />
+                </h:selectOneMenu>
+            </div>
+            <div class="col-sm-2 boxed"></div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-2 boxed"></div>
+            <h:outputLabel for="firstName" class="col-sm-2 control-label">First name</h:outputLabel>
+            <div class="col-sm-6">
+                <h:inputText class="form-control" id="firstName" placeholder="First name" value="#{customerController.customer.firstName}">
+                    <f:validateRequired/>
+                    <f:validateLength for="firstName" minimum="4" maximum="32" />
+                    <f:ajax event="blur" render="firstNameError"/>
+                </h:inputText>
+            </div>
+            <h:message id="firstNameError" for="firstName" styleClass="col-sm-2 alert validation-error"/>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-2 boxed"></div>
+            <h:outputLabel for="lastName" class="col-sm-2 control-label">Last name</h:outputLabel>
+            <div class="col-sm-6">
+                <h:inputText class="form-control" id="lastName" placeholder="Last name" value="#{customerController.customer.lastName}">
+                    <f:validateRequired/>
+                    <f:validateLength for="lastName" minimum="4" maximum="32" />
+                    <f:ajax event="blur" render="lastNameError"/>
+                </h:inputText>
+            </div>
+            <h:message id="lastNameError" for="lastName" styleClass="col-sm-2 alert validation-error"/>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-2 boxed"></div>
+            <h:outputLabel for="email" class="col-sm-2 control-label">Email address</h:outputLabel>
+            <div class="col-sm-6">
+                <h:inputText type="email" class="form-control" id="email" value="#{customerController.customer.email}" placeholder="Enter email">
+                    <f:validateRequired/>
+                    <f:ajax event="blur" render="emailError"/>
+                </h:inputText>
+            </div>
+            <h:message id="emailError" for="email" styleClass="col-sm-2 alert validation-error"/>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-2">
+                Date of birth
+            </div>
+            <div class="col-sm-6">
+                <label class="control-label" for="dobDay">Day</label>&#160;
+                <h:selectOneMenu id="dobDay" value="#{customerController.dobDay}" label="Day">
+                    <f:selectItem itemLabel="----"  itemValue=""/>
+                    <f:selectItems value="#{customerController.daysOfTheMonth}" var="day" itemLabel="#{day}" itemValue="#{day}" />
+                    <f:validateRequired/>
+                </h:selectOneMenu>
+                &#160;&#160;
+                <label class="control-label" for="dobMonth">Month</label>&#160;
+                <h:selectOneMenu id="dobMonth" value="#{customerController.dobMonth}" label="Month">
+                    <f:selectItem itemLabel="----"  itemValue=""/>
+                    <f:selectItems value="#{customerController.monthsOfTheYear}"/>
+                    <f:validateRequired/>
+                </h:selectOneMenu>
+                &#160;&#160;
+                <label class="control-label" for="dobYear">Year</label>&#160;
+                <h:inputText id="dobYear" value="#{customerController.dobYear}" label="Year" size="4">
+                    <f:validateRequired/>
+                </h:inputText>
+            </div>
+            <div class="col-sm-2"></div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-2"></div>
+            <div class="col-sm-6">
+                <h:message for="dobDay" styleClass="form-error"/>
+                <h:message for="dobMonth" styleClass="form-error"/>
+                <h:message for="dobYear" styleClass="form-error"/>
+            </div>
+            <div class="col-sm-2"></div>                    
+        </div>
+
+        <div class="text-center">
+            <!-- action is parameterized in <ui:include> in create.xhtml and edit.xhtml -->
+            <h:commandButton styleClass="btn btn-sm btn-primary" action="#{customerController[action]}" value="Submit" />
+            &#160;&#160;
+            <h:commandButton styleClass="btn btn-sm btn-primary" action="#{customerController.cancel}" immediate="true" value="Cancel"/>
+        </div>
+    </h:form>
+</div>
+
+</ui:composition>

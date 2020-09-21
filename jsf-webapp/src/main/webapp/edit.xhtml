@@ -1,126 +1,24 @@
-<!DOCTYPE html>
-<html lang="en"
+<ui:composition template="layout.xhtml"
     xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://xmlns.jcp.org/jsf/html"
-    xmlns:f="http://xmlns.jcp.org/jsf/core"
-    xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
-<h:head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>Title</title>
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.prime.com.tr/ui"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html">
+    
+    <ui:define name="title">Edit customer profile</ui:define>
 
-    <link href="#{request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet"/>
-    <script src="#{request.contextPath}/resources/js/jquery.slim.min.js"></script>
-    <script src="#{request.contextPath}/resources/js/popper.min.js"></script>
-</h:head>
-<h:body>
-    <f:metadata>
-        <f:viewParam name="id" value="#{customerController.id}" />
-        <f:viewAction action="#{customerController.findCustomerById()}"/>
-    </f:metadata>
+    <ui:define name="content">
 
     <div class="container">
-        <div class="jumbotron">
-            <h1 class="display-4">Title</h1>
-            <p class="lead">Subtitle</p>
-            <hr class="my-4"/>
-        </div>
-        <div>
-            <h:form id="editCustomer" styleClass="form-horizontal" p:role="form">
+        <f:metadata>
+            <f:viewParam name="id" value="#{customerController.id}" />
+            <f:viewAction action="#{customerController.findCustomerById()}"/>
+        </f:metadata>
 
-                <h:inputHidden value="${customerController.id}" />
-
-                <div class="form-group row">
-                    <h:outputLabel for="title" class="col-sm-2 control-label">Title</h:outputLabel>
-                    <div class="col-sm-6">
-                        <h:selectOneMenu class="form-control" id="title" value="#{customerController.customer.title}">
-                            <f:selectItem itemLabel="--" itemValue="" />
-                            <f:selectItem itemValue="Mr." />
-                            <f:selectItem itemValue="Mrs." />
-                            <f:selectItem itemValue="Miss." />
-                            <f:selectItem itemValue="Ms." />
-                            <f:selectItem itemValue="Dr." />
-                        </h:selectOneMenu>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <h:outputLabel for="firstName" class="col-sm-2 control-label">First name</h:outputLabel>
-                    <div class="col-sm-6">
-                        <h:inputText class="form-control" id="firstName" placeholder="First name" value="#{customerController.customer.firstName}">
-                            <f:validateRequired/>
-                            <f:validateLength for="firstName" minimum="4" maximum="32" />
-                            <f:ajax event="blur" render="firstNameError"/>
-                        </h:inputText>
-                        <h:message id="firstNameError" for="firstName" styleClass="alert validation-error"/>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <h:outputLabel for="lastName" class="col-sm-2 control-label">Last name</h:outputLabel>
-                    <div class="col-sm-6">
-                        <h:inputText class="form-control" id="lastName" placeholder="Last name" value="#{customerController.customer.lastName}">
-                            <f:validateRequired/>
-                            <f:validateLength for="lastName" minimum="4" maximum="32" />
-                            <f:ajax event="blur" render="lastNameError"/>
-                        </h:inputText>
-                        <h:message id="lastNameError" for="lastName" styleClass="alert validation-error"/>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <h:outputLabel for="email" class="col-sm-2 control-label">Email address</h:outputLabel>
-                    <div class="col-sm-6">
-                        <h:inputText type="email" class="form-control" id="email" value="#{customerController.customer.email}" placeholder="Enter email">
-                            <f:validateRequired/>
-                            <f:ajax event="blur" render="emailError"/>
-                        </h:inputText>
-                    </div>
-                    <h:message id="emailError" for="email" styleClass="alert validation-error"/>
-                </div>
-
-                <div class="form-group row">
-                    <div class="col-sm-2">
-                        Date of birth
-                    </div>
-                    <div class="col-sm-6">
-                        <label class="control-label" for="dobDay">Day</label>&#160;
-                        <h:selectOneMenu id="dobDay" value="#{customerController.dobDay}" label="Day">
-                            <f:selectItem itemLabel="----"  itemValue=""/>
-                            <f:selectItems value="#{customerController.daysOfTheMonth}" var="day" itemLabel="#{day}" itemValue="#{day}" />
-                            <f:validateRequired/>
-                        </h:selectOneMenu>
-                        &#160;&#160;
-                        <label class="control-label" for="dobMonth">Month</label>&#160;
-                        <h:selectOneMenu id="dobMonth" value="#{customerController.dobMonth}" label="Month">
-                            <f:selectItem itemLabel="----"  itemValue=""/>
-                            <f:selectItems value="#{customerController.monthsOfTheYear}"/>
-                            <f:validateRequired/>
-                        </h:selectOneMenu>
-                        &#160;&#160;
-                        <label class="control-label" for="dobYear">Year</label>&#160;
-                        <h:inputText id="dobYear" value="#{customerController.dobYear}" label="Year" size="4">
-                            <f:validateRequired/>
-                        </h:inputText>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <div class="col-sm-2"></div>
-                    <div class="col-sm-6">
-                        <h:message for="dobDay" styleClass="form-error"/>
-                        <h:message for="dobMonth" styleClass="form-error"/>
-                        <h:message for="dobYear" styleClass="form-error"/>
-                    </div>
-                </div>
-
-                <h:commandButton styleClass="btn btn-sm btn-primary" action="#{customerController.update}" value="Submit" />
-                &#160;
-                &#160;
-                <h:commandButton styleClass="btn btn-sm btn-primary" action="#{customerController.cancel()}" immediate="true" value="Cancel"/>
-            </h:form>
-        </div>
+        <ui:include src="form.xhtml">
+            <ui:param name="action" value="update"/>
+        </ui:include>
     </div>
-</h:body>
-</html>
+
+    </ui:define>
+</ui:composition>
