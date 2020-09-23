@@ -43,6 +43,8 @@ public class CustomerController implements Serializable {
 
     private int page = 1;
 
+    private int pageCount = 1;
+
     /**
      * day/month/year to represent birthdate in create/edit form
      */
@@ -86,7 +88,7 @@ public class CustomerController implements Serializable {
     }
 
     public String cancel() {
-        return "index.xhtml";
+        return "index.xhtml?faces-redirect=true";
     }
 
     private Date getBirthDateFromFormFields() {
@@ -102,7 +104,7 @@ public class CustomerController implements Serializable {
         customer.setBirthDate(getBirthDateFromFormFields());
         customerService.update(customer);
 
-        return "index.xhtml";
+        return "index.xhtml?faces-redirect=true";
     }
 
     public String remove() {
@@ -113,7 +115,8 @@ public class CustomerController implements Serializable {
     public List<Customer> findAllCustomers() {
         logger.severe("CustomerController::findAllCustomers");
         if (page == LAST_PAGE) {
-            page = (int)customerService.findNumberOfPages(PAGE_SIZE);
+            pageCount = (int)customerService.findNumberOfPages(PAGE_SIZE);
+            page = pageCount;
         }
         return customerService.findAll(page, PAGE_SIZE);
     }
@@ -138,6 +141,14 @@ public class CustomerController implements Serializable {
         this.page = page;
     }
 
+    public int getPageCount() {
+        return pageCount;
+    }
+
+    public void setPageCount(int pageCount) {
+        this.pageCount = pageCount;
+    }
+    
     public String getDobYear() {
         return dobYear;
     }

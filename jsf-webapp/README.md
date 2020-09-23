@@ -1,8 +1,9 @@
 TODO 
+- disable button (e.g. first page, last page)
 - Sort by fields 
 - Authentication/Authorization 
 - Add other fields: gender 
-- Internationalization
+- Language selection (set locale)
 
 CRUD demo in JSF
 
