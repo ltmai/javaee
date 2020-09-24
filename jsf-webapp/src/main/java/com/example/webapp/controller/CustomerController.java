@@ -112,12 +112,26 @@ public class CustomerController implements Serializable {
         return "index.xhtml";
     }
 
-    public List<Customer> findAllCustomers() {
-        logger.severe("CustomerController::findAllCustomers");
-        if (page == LAST_PAGE) {
-            pageCount = (int)customerService.findNumberOfPages(PAGE_SIZE);
-            page = pageCount;
+    public void normalizePageIndex() {
+        pageCount = (int)customerService.findNumberOfPages(PAGE_SIZE);
+        
+        switch(page) {
+            case LAST_PAGE: 
+                page = pageCount;
+                break;
+            case 0:
+                page = 1;
+                break;
+            default:
+                if (page > pageCount) {
+                    page = pageCount;
+                }
         }
+    }
+
+    public List<Customer> findAllCustomers() {
+        logger.info("CustomerController::findAllCustomers");
+        normalizePageIndex();
         return customerService.findAll(page, PAGE_SIZE);
     }
 
@@ -148,7 +162,7 @@ public class CustomerController implements Serializable {
     public void setPageCount(int pageCount) {
         this.pageCount = pageCount;
     }
-    
+
     public String getDobYear() {
         return dobYear;
     }

@@ -3,12 +3,13 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.prime.com.tr/ui"
     xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html">
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:c="http://java.sun.com/jsp/jstl/core">
 
     <f:metadata>
         <f:viewParam name="page" value="#{customerController.page}" />
     </f:metadata>
-    
+
     <ui:define name="title"><h:outputText value="#{msg['customers']}" /></ui:define>
 
     <ui:define name="content">
@@ -67,24 +68,24 @@
         </h:dataTable>
         
         <div class="text-center"><!-- paging buttons --> 
-            <h:link styleClass="btn btn-sm btn-info" outcome="index.xhtml">
+            <h:link styleClass="btn btn-sm btn-info" outcome="index.xhtml" disabled="#{customerController.page eq 1}">
                 &#124;&#60;  <!--first-->
                 <f:param name="page" value="1" />
             </h:link>
             <!-- &#160; -->
-            <h:link styleClass="btn btn-sm btn-info" outcome="index.xhtml">
+            <h:link styleClass="btn btn-sm btn-info" outcome="index.xhtml" disabled="#{customerController.page eq 1}">
                 &#60; <!--previous-->
                 <f:param name="page" value="#{customerController.page > 1 ? customerController.page - 1 : 1}" />
             </h:link>
             &#160;
             <h:outputText value="#{customerController.page}"></h:outputText>
             &#160;     
-            <h:link styleClass="btn btn-sm btn-info" outcome="index.xhtml">
+            <h:link styleClass="btn btn-sm btn-info" outcome="index.xhtml" disabled="#{customerController.page eq customerController.pageCount}">
                 &#62; <!--next-->
-                <f:param name="page" value="#{customerController.page lt customerController.pageCount ? customerController.page + 1 : customerController.pageCount}" />
+                <f:param name="page" value="#{customerController.page lt customerController.pageCount ? customerController.page+1 : customerController.pageCount}"/>
             </h:link> 
             <!-- &#160; -->
-            <h:link styleClass="btn btn-sm btn-info" outcome="index.xhtml">
+            <h:link styleClass="btn btn-sm btn-info" outcome="index.xhtml" disabled="#{customerController.page eq customerController.pageCount}">
                 &#62;&#124;  <!--last-->
                 <f:param name="page" value="-1" />
             </h:link>
