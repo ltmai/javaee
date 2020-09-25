@@ -7,10 +7,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -57,19 +57,17 @@ public class CustomerController implements Serializable {
      * static data for day and month dropdown boxes
      */
     private static List<Integer> daysOfTheMonth = new ArrayList<>();
-    private static Map<String, Integer> monthsOfTheYear = new LinkedHashMap<>();
 
     static {
         for (int d = 1; d <= 31; ++d) {
             daysOfTheMonth.add(d);
         }
-
-        final DateFormatSymbols symbols = new DateFormatSymbols(Locale.getDefault());
-        for (int m = 1; m <= 12; ++m) {
-            monthsOfTheYear.put(symbols.getMonths()[m - 1], m - 1);
-        }
     }
 
+    /**
+     * Invoked on editing customer.
+     * @param birthDate
+     */
     public void setBirthDateToFormFields(Date birthDate) {
         if (birthDate != null) {
             final Calendar cal = Calendar.getInstance();
@@ -110,7 +108,7 @@ public class CustomerController implements Serializable {
 
     public String remove() {
         customerService.deleteById(id);
-        return "index.xhtml";
+        return "index.xhtml?faces-redirect=true";
     }
 
     public void normalizePageIndex() {
@@ -133,6 +131,7 @@ public class CustomerController implements Serializable {
     public List<Customer> findAllCustomers() {
         logger.info("CustomerController::findAllCustomers");
         normalizePageIndex();
+
         return customerService.findAll(page, PAGE_SIZE);
     }
 
@@ -197,10 +196,11 @@ public class CustomerController implements Serializable {
     }
 
     public Map<String, Integer> getMonthsOfTheYear() {
+        final DateFormatSymbols symbols = new DateFormatSymbols(FacesContext.getCurrentInstance().getViewRoot().getLocale());
+        Map<String, Integer> monthsOfTheYear = new LinkedHashMap<>();
+        for (int m = 1; m <= 12; ++m) {
+            monthsOfTheYear.put(symbols.getMonths()[m - 1], m - 1);
+        }
         return monthsOfTheYear;
-    }
-
-    public void setMonthsOfTheYear(Map<String, Integer> monthsOfTheYear) {
-        CustomerController.monthsOfTheYear = monthsOfTheYear;
     }
 }

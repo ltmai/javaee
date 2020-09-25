@@ -16,12 +16,11 @@
             <h:outputLabel for="title" class="col-sm-2 control-label">Title</h:outputLabel>
             <div class="col-sm-6">
                 <h:selectOneMenu class="form-control" id="title" value="#{customerController.customer.title}">
-                    <f:selectItem itemLabel="--" itemValue="" />
-                    <f:selectItem itemValue="Mr." />
+                    <f:selectItem itemValue=""    itemLabel="--" />
+                    <f:selectItem itemValue="Mr."  />
                     <f:selectItem itemValue="Mrs." />
-                    <f:selectItem itemValue="Miss." />
-                    <f:selectItem itemValue="Ms." />
-                    <f:selectItem itemValue="Dr." />
+                    <f:selectItem itemValue="Ms."  />
+                    <f:selectItem itemValue="Dr."  />
                 </h:selectOneMenu>
             </div>
             <div class="col-sm-2 boxed"></div>

@@ -10,10 +10,15 @@
             <h1 class="display-4"><b>JSF Customer Management</b></h1>
             <p class="lead">CRUD</p>
             <hr class="my-4"/>
-            <h:form id="languageForm">
-                <h:commandLink styleClass="btn btn-sm" action="#{localeController.setLanguage('en')}" value="EN"/>
-                <h:commandLink styleClass="btn btn-sm" action="#{localeController.setLanguage('de')}" value="DE"/>
-            </h:form>
+            <div class="text-left">
+                <h:link styleClass="btn btn-default h1" outcome="index.xhtml?faces-redirect=true" value="Home"/>
+            </div>
+            <div class="text-right">
+                <h:form id="languageForm">
+                    <h:commandLink styleClass="btn btn-sm" action="#{localeController.setLanguage('en')}" value="EN" immediate="true"/>
+                    <h:commandLink styleClass="btn btn-sm" action="#{localeController.setLanguage('de')}" value="DE" immediate="true"/>
+                </h:form>
+            </div>            
         </div>
     </ui:composition>
     <!-- ALL TAGS BELOW THIS LINE WILL BE REMOVED BY JSF -->

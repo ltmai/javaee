@@ -1,8 +1,5 @@
-TODO 
-- Sort by fields 
-- Authentication/Authorization 
-- Add other fields: gender 
-- Language selection (set locale)
+TODO:
+- Mark active language
 
 CRUD demo in JSF
 
