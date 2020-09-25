@@ -29,7 +29,9 @@
 
         <div class="form-group row">
             <div class="col-sm-2 boxed"></div>
-            <h:outputLabel for="firstName" class="col-sm-2 control-label">First name</h:outputLabel>
+            <h:outputLabel for="firstName" class="col-sm-2 control-label">
+                <h:outputText value="#{msg['customers.firstname']}"/>
+            </h:outputLabel>
             <div class="col-sm-6">
                 <h:inputText class="form-control" id="firstName" placeholder="First name" value="#{customerController.customer.firstName}">
                     <f:validateRequired/>
@@ -42,7 +44,9 @@
 
         <div class="form-group row">
             <div class="col-sm-2 boxed"></div>
-            <h:outputLabel for="lastName" class="col-sm-2 control-label">Last name</h:outputLabel>
+            <h:outputLabel for="lastName" class="col-sm-2 control-label">
+                <h:outputText value="#{msg['customers.lastname']}"/>
+            </h:outputLabel>
             <div class="col-sm-6">
                 <h:inputText class="form-control" id="lastName" placeholder="Last name" value="#{customerController.customer.lastName}">
                     <f:validateRequired/>
@@ -55,7 +59,9 @@
 
         <div class="form-group row">
             <div class="col-sm-2 boxed"></div>
-            <h:outputLabel for="email" class="col-sm-2 control-label">Email address</h:outputLabel>
+            <h:outputLabel for="email" class="col-sm-2 control-label">
+                <h:outputText value="#{msg['customers.email']}"/>
+            </h:outputLabel>
             <div class="col-sm-6">
                 <h:inputText type="email" class="form-control" id="email" value="#{customerController.customer.email}" placeholder="Enter email">
                     <f:validateRequired/>
@@ -68,7 +74,7 @@
         <div class="form-group row">
             <div class="col-sm-2"></div>
             <div class="col-sm-2">
-                Date of birth
+                <h:outputText value="#{msg['customers.birthday']}"/>
             </div>
             <div class="col-sm-6">
                 <label class="control-label" for="dobDay">Day</label>&#160;

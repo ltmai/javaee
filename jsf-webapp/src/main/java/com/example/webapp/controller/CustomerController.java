@@ -19,6 +19,7 @@ import com.example.webapp.entities.Customer;
 import com.example.webapp.service.CustomerService;
 
 
+
 @Named
 @ViewScoped
 public class CustomerController implements Serializable {

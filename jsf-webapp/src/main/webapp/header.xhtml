@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
 <body>
     <!-- ALL TAGS ABOVE THIS LINE WILL BE REMOVED BY JSF -->
     <ui:composition>
@@ -8,6 +10,10 @@
             <h1 class="display-4"><b>JSF Customer Management</b></h1>
             <p class="lead">CRUD</p>
             <hr class="my-4"/>
+            <h:form id="languageForm">
+                <h:commandLink styleClass="btn btn-sm" action="#{localeController.setLanguage('en')}" value="EN"/>
+                <h:commandLink styleClass="btn btn-sm" action="#{localeController.setLanguage('de')}" value="DE"/>
+            </h:form>
         </div>
     </ui:composition>
     <!-- ALL TAGS BELOW THIS LINE WILL BE REMOVED BY JSF -->
