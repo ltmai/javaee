@@ -1,8 +1,8 @@
-package mai.linh.webapp.demo;
+package mai.linh.webapp.demo.ejb;
 
 import javax.ejb.Stateless;
 
-import mai.linh.webapp.demo.ServiceSelection.ServiceType;
+import mai.linh.webapp.demo.ejb.ServiceSelection.ServiceType;
 
 /**
  * EJB Implementation with qualifier

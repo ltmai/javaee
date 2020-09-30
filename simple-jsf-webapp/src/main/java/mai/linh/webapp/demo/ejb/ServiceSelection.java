@@ -1,4 +1,4 @@
-package mai.linh.webapp.demo;
+package mai.linh.webapp.demo.ejb;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -15,5 +15,5 @@ public @interface ServiceSelection {
         DEFAULT,
         EXTENDED
     };
-    ServiceType type();
+    ServiceType type() default ServiceType.DEFAULT;
 }

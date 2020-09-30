@@ -1,4 +1,4 @@
-package mai.linh.webapp.demo;
+package mai.linh.webapp.demo.ejb;
 
 /**
  * EJB interface
