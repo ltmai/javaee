@@ -13,7 +13,7 @@
 
         <div class="form-group row">
             <div class="col-sm-2 boxed"></div>
-            <h:outputLabel for="title" class="col-sm-2 control-label">Title</h:outputLabel>
+            <h:outputLabel for="title" class="col-sm-2 control-label"><h:outputText value="#{msg['customers.title']}"/></h:outputLabel>
             <div class="col-sm-6">
                 <h:selectOneMenu class="form-control" id="title" value="#{customerController.customer.title}">
                     <f:selectItem itemValue=""    itemLabel="--" />
@@ -76,22 +76,22 @@
                 <h:outputText value="#{msg['customers.birthday']}"/>
             </div>
             <div class="col-sm-6">
-                <label class="control-label" for="dobDay">Day</label>&#160;
-                <h:selectOneMenu id="dobDay" value="#{customerController.dobDay}" label="Day">
+                <label class="control-label" for="dobDay"><h:outputText value="#{msg['general.day']}"/></label>&#160;
+                <h:selectOneMenu id="dobDay" value="#{customerController.dobDay}" label="#{msg['general.day']}">
                     <f:selectItem itemLabel="----"  itemValue=""/>
                     <f:selectItems value="#{customerController.daysOfTheMonth}" var="day" itemLabel="#{day}" itemValue="#{day}" />
                     <f:validateRequired/>
                 </h:selectOneMenu>
                 &#160;&#160;
-                <label class="control-label" for="dobMonth">Month</label>&#160;
-                <h:selectOneMenu id="dobMonth" value="#{customerController.dobMonth}" label="Month">
+                <label class="control-label" for="dobMonth"><h:outputText value="#{msg['general.month']}"/></label>&#160;
+                <h:selectOneMenu id="dobMonth" value="#{customerController.dobMonth}" label="#{msg['general.month']}">
                     <f:selectItem itemLabel="----"  itemValue=""/>
                     <f:selectItems value="#{customerController.monthsOfTheYear}"/>
                     <f:validateRequired/>
                 </h:selectOneMenu>
                 &#160;&#160;
-                <label class="control-label" for="dobYear">Year</label>&#160;
-                <h:inputText id="dobYear" value="#{customerController.dobYear}" label="Year" size="4">
+                <label class="control-label" for="dobYear"><h:outputText value="#{msg['general.year']}"/></label>&#160;
+                <h:inputText id="dobYear" value="#{customerController.dobYear}" label="#{msg['general.year']}" size="4">
                     <f:validateRequired/>
                 </h:inputText>
             </div>
@@ -111,9 +111,9 @@
 
         <div class="text-center">
             <!-- action is parameterized in <ui:include> in create.xhtml and edit.xhtml -->
-            <h:commandButton styleClass="btn btn-sm btn-primary" action="#{customerController[action]}" value="Submit" />
+            <h:commandButton styleClass="btn btn-sm btn-primary" action="#{customerController[action]}" value="#{msg['general.save']}" />
             &#160;&#160;
-            <h:commandButton styleClass="btn btn-sm btn-primary" action="#{customerController.cancel}" immediate="true" value="Cancel"/>
+            <h:commandButton styleClass="btn btn-sm btn-primary" action="#{customerController.cancel}" immediate="true" value="#{msg['general.cancel']}"/>
         </div>
     </h:form>
 </div>

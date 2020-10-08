@@ -1,0 +1,21 @@
+<ui:composition template="layout.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.prime.com.tr/ui"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html">
+    
+    <ui:define name="meta">
+        <meta http-equiv="refresh" content="5;url=#{request.contextPath}/index.xhtml" />
+    </ui:define>
+
+    <ui:define name="title">Edit customer profile</ui:define>
+
+    <ui:define name="content">
+
+    <div class="container">
+        <h:outputText value="#{msg['session.expired']}"/>
+    </div>
+
+    </ui:define>
+</ui:composition>

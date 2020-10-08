@@ -15,8 +15,9 @@
             </div>
             <div class="text-right">
                 <h:form id="languageForm">
-                    <h:commandLink styleClass="btn btn-sm" action="#{localeController.setLanguage('en')}" value="EN" immediate="true"/>
-                    <h:commandLink styleClass="btn btn-sm" action="#{localeController.setLanguage('de')}" value="DE" immediate="true"/>
+                    <h:commandLink styleClass="#{localeController.language=='en' ? 'btn btn-dark' : 'btn'}" action="#{localeController.setLanguage('en')}" value="EN" immediate="true"/>
+                    <h:commandLink styleClass="#{localeController.language=='de' ? 'btn btn-dark' : 'btn'}" action="#{localeController.setLanguage('de')}" value="DE" immediate="true"/>
+                    <h:commandLink styleClass="#{localeController.language=='cn' ? 'btn btn-dark' : 'btn'}" action="#{localeController.setLanguage('cn')}" value="CN" immediate="true"/>
                 </h:form>
             </div>            
         </div>

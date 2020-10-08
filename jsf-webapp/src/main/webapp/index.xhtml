@@ -48,21 +48,21 @@
             <h:column>
                 <!-- edit action --> 
                 <f:facet name="header"><h:outputText value="#{msg['customers.action']}"/></f:facet>
-                <h:link outcome="edit.xhtml">
+                <h:link outcome="edit.xhtml" styleClass="btn btn-sm">
                     <f:param name="id" value="#{customer.id}" />
-                    <i class="fas fa-edit"></i>
+                    <i class="fas fa-edit" title="#{msg['general.edit']}"></i>
                 </h:link>
                 &#160;&#160;
                 <!-- remove action -->
-                <h:link outcome="remove.xhtml">
+                <h:link outcome="remove.xhtml" styleClass="btn btn-sm">
                     <f:param name="id" value="#{customer.id}" />
-                    <i class="fas fa-trash-alt"></i>
+                    <i class="fas fa-trash-alt" title="#{msg['general.delete']}"></i>
                 </h:link>
                 &#160;&#160;
                 <!-- remove action -->
-                <h:link outcome="detail.xhtml">
+                <h:link outcome="detail.xhtml" styleClass="btn btn-sm">
                     <f:param name="id" value="#{customer.id}" />
-                    <i class="fas fa-info"></i>
+                    <i class="fas fa-info" title="#{msg['general.detail']}"></i>
                 </h:link>
             </h:column>
         </h:dataTable>

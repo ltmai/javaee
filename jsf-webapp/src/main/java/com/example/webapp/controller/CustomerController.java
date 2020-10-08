@@ -7,6 +7,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -78,12 +79,19 @@ public class CustomerController implements Serializable {
         }
     }
 
-    public void findCustomerById() {
+    /**
+     * bean method used in <f:viewAction> should be of the form
+     * <code> public Object method() </code>
+     * @return
+     */
+    public String findCustomerById() {
+        System.out.println("findCustomerById");
         customer = customerService.findById(id);
 
         if (customer != null) {
             setBirthDateToFormFields(customer.getBirthDate());
         }
+        return null;
     }
 
     public String cancel() {
@@ -196,10 +204,12 @@ public class CustomerController implements Serializable {
     }
 
     public Map<String, Integer> getMonthsOfTheYear() {
-        final DateFormatSymbols symbols = new DateFormatSymbols(FacesContext.getCurrentInstance().getViewRoot().getLocale());
+        final Locale currentLocale = FacesContext.getCurrentInstance().getViewRoot().getLocale();
+        final DateFormatSymbols symbols = DateFormatSymbols.getInstance(currentLocale);
+
         Map<String, Integer> monthsOfTheYear = new LinkedHashMap<>();
-        for (int m = 1; m <= 12; ++m) {
-            monthsOfTheYear.put(symbols.getMonths()[m - 1], m - 1);
+        for (int m = 0; m < 12; ++m) {
+            monthsOfTheYear.put(symbols.getMonths()[m], m);
         }
         return monthsOfTheYear;
     }

@@ -3,6 +3,7 @@
    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+
     <application>
         <resource-bundle>
           <base-name>com.example.webapp.i18n.messages</base-name>
@@ -14,6 +15,12 @@
         <locale-config>
           <default-locale>en</default-locale>
           <supported-locale>de</supported-locale>
+          <supported-locale>cn</supported-locale>
         </locale-config>
     </application>
+
+    <lifecycle>
+      <phase-listener>com.example.webapp.utils.DebugPhaseListener</phase-listener>
+     </lifecycle>
+
 </faces-config>
