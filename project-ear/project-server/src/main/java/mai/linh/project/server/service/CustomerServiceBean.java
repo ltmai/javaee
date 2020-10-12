@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.transaction.TransactionSynchronizationRegistry;
 
 import org.apache.logging.log4j.Logger;
 
@@ -29,11 +30,15 @@ public class CustomerServiceBean implements CustomerService
     @Inject @Log4J 
     private Logger logger;
 
+    @Resource
+    TransactionSynchronizationRegistry txReg;
+
     @Override
     @Logged(name = "Find all customers")    
     public List<Customer> getAllCustomers() 
     {
         logger.info("Caller name: " + context.getCallerPrincipal().getName());
+        logger.info("CustomerServiceBean - Transaction status: " + txReg.getTransactionStatus());
         return db.getAllCustomers();
     }
 }

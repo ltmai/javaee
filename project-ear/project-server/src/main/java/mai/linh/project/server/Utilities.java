@@ -3,12 +3,9 @@ package mai.linh.project.server;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-import javax.enterprise.context.Dependent;
-
 /**
- * Utilities CDI
+ * Utilities CDI injected by JSF bean
  */
-@Dependent
 public class Utilities implements Serializable
 {
     private static final long serialVersionUID = 1L;

@@ -11,6 +11,7 @@ import javax.ejb.Startup;
 import javax.enterprise.concurrent.ManagedScheduledExecutorService;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
+import javax.transaction.TransactionSynchronizationRegistry;
 
 import org.apache.logging.log4j.Logger;
 
@@ -39,6 +40,9 @@ public class StartupBean
 
     @Inject @Log4J
     private Logger logger;
+
+    @Resource
+    TransactionSynchronizationRegistry txReg;
     
     private ScheduledFuture<?> futureDbCleaner;
 
@@ -64,6 +68,22 @@ public class StartupBean
     {
         try 
         {
+            /**
+             * Check if we have active transaction here: expect no transaction
+             * interface javax.transaction.Status:
+             * public static final int STATUS_ACTIVE = 0;
+             * public static final int STATUS_MARKED_ROLLBACK = 1;
+             * public static final int STATUS_PREPARED = 2;
+             * public static final int STATUS_COMMITTED = 3;
+             * public static final int STATUS_ROLLEDBACK = 4;
+             * public static final int STATUS_UNKNOWN = 5;
+             * public static final int STATUS_NO_TRANSACTION = 6; 
+             * public static final int STATUS_PREPARING = 7;
+             * public static final int STATUS_COMMITTING = 8;
+             * public static final int STATUS_ROLLING_BACK = 9;
+             */
+            logger.info(Thread.currentThread().getId() + " Scheduled task: Transaction status=" + txReg.getTransactionStatus());
+
             CustomerService customerService = serviceInstance.get();
 
             customerService.getAllCustomers().forEach(logger::info);
