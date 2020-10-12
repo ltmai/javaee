@@ -2,6 +2,7 @@
 **/.settings/
 **/.vscode/
 **/.idea/
+**/.ionide/
 **/.sts4-cache/
 **/target/
 **/.classpath
