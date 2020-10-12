@@ -1,18 +1,21 @@
 package com.linhmai.simple.webapp;
 
-import com.linhmai.simple.webapp.qualifier.Random;
+import java.io.Serializable;
 
 import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.io.Serializable;
+
+import com.linhmai.simple.webapp.qualifier.Random;
 
 @SessionScoped
 @Named("hellobean")
 public class HelloWorld implements Serializable {
-
-    @Inject @Random
+    private static final long serialVersionUID = 1L;
+    
+    @Inject
+    @Random
     Instance<Integer> randomInt;
 	
 	public int getRandomInt() {
