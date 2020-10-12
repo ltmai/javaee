@@ -110,7 +110,7 @@ public class CustomServerAuthModule implements ServerAuthModule {
         }
         clientSubject.getPrincipals().clear();
         try {
-            response.sendRedirect(request.getContextPath());
+            response.sendRedirect(request.getContextPath()+"?faces-redirect=true");
         } catch (Exception e) {
             e.printStackTrace();
         }
