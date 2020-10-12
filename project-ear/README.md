@@ -69,7 +69,8 @@ The Log4j2 .jar files are therefore not be packaged into project EAR, makeing it
 ```
 
 ### JBoss module
-The module.xml file declares a JBoss module and makes it available to all applications running on this JVM.
+
+The `module.xml` file declares a JBoss module and makes it available to all applications running on this JVM.
 The referenced resources are automatically added by application server to application classpath at run-time.
 
 ```xml
@@ -84,6 +85,7 @@ The referenced resources are automatically added by application server to applic
 ```
 
 ### JBoss system properties
+
 The following system property is defined in standalone.xml to be referenced by Log4J2 engine.
 The property name can be anything, and not necessarily as in the following example:
 
@@ -94,6 +96,7 @@ The property name can be anything, and not necessarily as in the following examp
 ```
 
 ### Log4j2 configuration
+
 In order to write log files in specified target directory, we define a configuration property `basePath`
 as follows. The value of this property refers to the system property defined in standalone.xml as above.
 Note that the value is referenced as `$${sys:property-name}`. 
