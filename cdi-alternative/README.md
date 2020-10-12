@@ -42,7 +42,7 @@ A bean is available for injection in a certain module if:
 - the bean class is required to be accessible to classes in the module, according to the class accessibility requirements of the 
   module architecture.
 
-The alternatives that you specify in the `beans.xml` file apply only to classes in the same archive. Use the `@Priority` annotation to 
+The alternatives that you specify in the `beans.xml` file apply only to **classes in the same archive**. Use the `@Priority` annotation to 
 specify alternatives globally for an **application that consists of multiple modules**, as in the following example:
 
 ```java
