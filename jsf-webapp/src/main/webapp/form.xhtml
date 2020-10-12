@@ -35,7 +35,7 @@
                 <h:inputText class="form-control" id="firstName" placeholder="First name" value="#{customerController.customer.firstName}">
                     <f:validateRequired/>
                     <f:validateLength for="firstName" minimum="4" maximum="32" />
-                    <f:ajax event="blur" render="firstNameError"/>
+                    <f:ajax event="blur" render="firstNameError"/><!--on loosing focus-->
                 </h:inputText>
             </div>
             <h:message id="firstNameError" for="firstName" styleClass="col-sm-2 alert validation-error"/>
@@ -50,7 +50,7 @@
                 <h:inputText class="form-control" id="lastName" placeholder="Last name" value="#{customerController.customer.lastName}">
                     <f:validateRequired/>
                     <f:validateLength for="lastName" minimum="4" maximum="32" />
-                    <f:ajax event="blur" render="lastNameError"/>
+                    <f:ajax event="blur" render="lastNameError"/><!--on loosing focus-->
                 </h:inputText>
             </div>
             <h:message id="lastNameError" for="lastName" styleClass="col-sm-2 alert validation-error"/>
@@ -64,7 +64,7 @@
             <div class="col-sm-6">
                 <h:inputText type="email" class="form-control" id="email" value="#{customerController.customer.email}" placeholder="Enter email">
                     <f:validateRequired/>
-                    <f:ajax event="blur" render="emailError"/>
+                    <f:ajax event="blur" render="emailError"/><!--on loosing focus-->
                 </h:inputText>
             </div>
             <h:message id="emailError" for="email" styleClass="col-sm-2 alert validation-error"/>
