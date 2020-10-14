@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+   <html xmlns = "http://www.w3.org/1999/xhtml"
+    xmlns:h = "http://java.sun.com/jsf/html"
+    xmlns:f = "http://java.sun.com/jsf/core">
+    <head>
+        <title>Listener</title>
+    </head>
+    <body>
+        <h:form>
+            <p>
+                <h:commandButton action="#{listenerBean.action}" actionListener="#{listenerBean.listener}" value="Fire!">
+                    <f:actionListener type="mai.linh.experiment.listener.ListenerWrapper" />
+                </h:commandButton>
+                Click the button and check the server.log<br/>
+            </p>
+            <p>
+
+            </p>
+        </h:form>
+    </body>
+</html>
