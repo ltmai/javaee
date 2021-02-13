@@ -5,12 +5,17 @@ import java.net.Socket;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * Provides socker operations with error handling
+ */
 public class TcpSocketHandler {
 
     private static Logger logger = LogManager.getLogger(TcpResourceAdapter.class);
     
     private Socket socket;
+
     private String host;
+
     private int port;
 
     public TcpSocketHandler(String host, int port) {
@@ -18,22 +23,28 @@ public class TcpSocketHandler {
         this.port = port;
     }
     
+    /**
+     * close socket connection
+     */
     public void close() {
-        logger.debug(String.format("Closing connection to %s:%d", host, port));
+        logger.debug(()->String.format("Closing connection to %s:%d", host, port));
         try {
             socket.close();
         } catch (Exception e) {
-            logger.error(String.format("Failed to close connection %s:%d: %s", host, port, e.getMessage()));
+            logger.error(()->String.format("Failed to close connection %s:%d: %s", host, port, e.getMessage()));
             e.printStackTrace();
         }
     }
 
+    /**
+     * open socket connection
+     */
     public void connect() {
-        logger.debug(String.format("Connecting to %s:%d", host, port));
+        logger.debug(()->String.format("Connecting to %s:%d", host, port));
         try {
             socket = new Socket(host, port);
         } catch (Exception e) {
-            logger.error(String.format("Failed to connect to %s:%d: %s ", host, port, e.getMessage()));
+            logger.error(()->String.format("Failed to connect to %s:%d: %s ", host, port, e.getMessage()));
             e.printStackTrace();
         }
     }
@@ -43,7 +54,7 @@ public class TcpSocketHandler {
      * @param buffer
      * @param offset
      * @param length
-     * @return
+     * @return number of bytes read, -1 if error occurs
      */
     public int read(byte[] buffer, int offset, int length) {
         int ret = tryRead(buffer, offset, length);
@@ -66,7 +77,7 @@ public class TcpSocketHandler {
         try {
             return socket.getInputStream().read(buffer, offset, length);
         } catch (Exception e) {
-            logger.error(String.format("Failed to read from %s:%d: %s ", host, port, e.getMessage()));
+            logger.error(()->String.format("Failed to read from %s:%d: %s ", host, port, e.getMessage()));
             e.printStackTrace();
             return -1;
         }
@@ -81,8 +92,8 @@ public class TcpSocketHandler {
      * @param length
      */
 	public void write(byte[] buffer, int offset, int length) {
-        boolean noException = tryWrite(buffer, offset, length);
-        if (!noException) {
+        boolean errorOccurred = !tryWrite(buffer, offset, length);
+        if (errorOccurred) {
             close();
             connect();
             tryWrite(buffer, offset, length);

@@ -43,7 +43,7 @@ public class StartupBean {
 
     @PostConstruct
     public void init() {
-        logger.severe("Project-Server starting ...");
+        logger.info(()->"Project-Server starting ...");
         cxRequestInfo = new TcpConnectionRequestInfo("localhost", Integer.valueOf(5000));
         future = scheduledExecutorService.scheduleWithFixedDelay(this::execute, INITIAL_DELAY, FIXED_DELAY, TimeUnit.SECONDS);
     }
@@ -52,18 +52,27 @@ public class StartupBean {
     public void cleanup() 
     {
         future.cancel(true);
-        logger.severe("Goodbye!");
+        logger.info(()->"Goodbye!");
     }
 
+    /**
+     * Periodically executed method that sends current time to target.
+     * Connection can also be initialized once in init() and used here 
+     * without closing (release handle to physical connection). We do
+     * as follows to demonstrate that we always get the same physical
+     * connection every time.
+     */
     private void execute() {
         try {
             connection = tcpConnectionFactory.getConnection(this.cxRequestInfo);
             String date = String.valueOf(new Date());
             connection.write(date.getBytes(), 0, date.getBytes().length);    
-            connection.close();        
-        } catch (ResourceException e) {
+        } 
+        catch (ResourceException e) {
             e.printStackTrace();
         } 
-
+        finally {
+            connection.close();
+        } 
     }
 }

@@ -6,4 +6,4 @@
 **/.sts4-cache/
 **/target/
 **/.classpath
-*.iml
+**/*.iml

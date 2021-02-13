@@ -53,7 +53,7 @@ public class TcpConnectionFactoryImpl implements TcpConnectionFactory
    @Override
    public TcpConnection getConnection(TcpConnectionRequestInfo info) throws ResourceException
    {
-      logger.debug("getConnection()");
+      logger.debug(()->"getConnection()");
       return (TcpConnection)connectionManager.allocateConnection(mcf, info);
    }
 
@@ -66,7 +66,7 @@ public class TcpConnectionFactoryImpl implements TcpConnectionFactory
    @Override
    public Reference getReference() throws NamingException
    {
-      logger.debug("getReference()");
+      logger.debug(()->"getReference()");
       return reference;
    }
 
@@ -78,7 +78,7 @@ public class TcpConnectionFactoryImpl implements TcpConnectionFactory
    @Override
    public void setReference(Reference reference)
    {
-      logger.debug("setReference()");
+      logger.debug(()->"setReference()");
       this.reference = reference;
    }
 

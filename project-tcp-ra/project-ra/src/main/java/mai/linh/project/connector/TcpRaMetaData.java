@@ -27,8 +27,8 @@ public class TcpRaMetaData implements ResourceAdapterMetaData
    @Override
    public String getAdapterVersion()
    {
-      logger.debug("getAdapterVersion");
-      return null; //TODO
+      logger.debug(()->"getAdapterVersion");
+      return "0.1-SNAPSHOT";
    }
 
    /**
@@ -39,8 +39,8 @@ public class TcpRaMetaData implements ResourceAdapterMetaData
    @Override
    public String getAdapterVendorName()
    {
-      logger.debug("getAdapterVendorName");
-      return null; //TODO
+      logger.debug(()->"getAdapterVendorName");
+      return "LM";
    }
 
    /**
@@ -51,8 +51,8 @@ public class TcpRaMetaData implements ResourceAdapterMetaData
    @Override
    public String getAdapterName()
    {
-      logger.debug("getAdapterName");
-      return null; //TODO
+      logger.debug(()->"getAdapterName");
+      return "TCP outbound Resource Adapter";
    }
 
    /**
@@ -64,7 +64,7 @@ public class TcpRaMetaData implements ResourceAdapterMetaData
    public String getAdapterShortDescription()
    {
       logger.debug("getAdapterShortDescription");
-      return null; //TODO
+      return "Outbound TCP connection to EIS"; 
    }
 
    /**
@@ -75,8 +75,8 @@ public class TcpRaMetaData implements ResourceAdapterMetaData
    @Override
    public String getSpecVersion()
    {
-      logger.debug("getSpecVersion");
-      return null; //TODO
+      logger.debug(()->"getSpecVersion");
+      return "JCA 1.7"; 
    }
 
    /**
@@ -87,8 +87,8 @@ public class TcpRaMetaData implements ResourceAdapterMetaData
    @Override
    public String[] getInteractionSpecsSupported()
    {
-      logger.debug("getInterdactionSpecsSupported");
-      return null; //TODO
+      logger.debug(()->"getInterdactionSpecsSupported");
+      return null; 
    }
 
    /**
@@ -99,8 +99,8 @@ public class TcpRaMetaData implements ResourceAdapterMetaData
    @Override
    public boolean supportsExecuteWithInputAndOutputRecord()
    {
-      logger.debug("supportsExecuteWithInputAndOutputRecord");
-      return false; //TODO
+      logger.debug(()->"supportsExecuteWithInputAndOutputRecord");
+      return false; 
    }
 
    /**
@@ -111,8 +111,8 @@ public class TcpRaMetaData implements ResourceAdapterMetaData
    @Override
    public boolean supportsExecuteWithInputRecordOnly()
    {
-      logger.debug("supportsExecuteWithInputRecordOnly");
-      return false; //TODO
+      logger.debug(()->"supportsExecuteWithInputRecordOnly");
+      return false; 
    }
 
    /**
@@ -123,8 +123,8 @@ public class TcpRaMetaData implements ResourceAdapterMetaData
    @Override
    public boolean supportsLocalTransactionDemarcation()
    {
-      logger.debug("supportsLocalTransactionDemarcation");
-      return false; //TODO
+      logger.debug(()->"supportsLocalTransactionDemarcation");
+      return false; 
    }
 
 

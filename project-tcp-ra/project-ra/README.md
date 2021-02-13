@@ -10,7 +10,8 @@ Add this to Wildfly standalone.xml to enable TCP resource adapter:
             </archive>
             <transaction-support>NoTransaction</transaction-support>
             <connection-definitions>
-                <connection-definition class-name="mai.linh.project.connector.TcpManagedConnectionFactory" jndi-name="java:/eis/TcpConnectionFactory" enabled="true" pool-name="tcp-connector">
+                <connection-definition class-name="mai.linh.project.connector.TcpManagedConnectionFactory" 
+                    jndi-name="java:/eis/TcpConnectionFactory" enabled="true" pool-name="tcp-connector">
                     <security>
                         <application/>
                     </security>
@@ -27,3 +28,4 @@ Add this to Wildfly standalone.xml to enable TCP resource adapter:
 ## TODO  
 - Configuration parameter: socket timeout
 - Configuration parameter: max connections
+- TcpConnection#write() throws IOException on failure

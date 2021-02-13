@@ -32,6 +32,9 @@ public class TcpManagedConnection implements ManagedConnection {
 
    private PrintWriter logwriter;
 
+   @SuppressWarnings("unused")
+   private TcpResourceAdapter ra;
+
    private TcpManagedConnectionFactory mcf;
 
    private List<ConnectionEventListener> listeners;
@@ -46,12 +49,13 @@ public class TcpManagedConnection implements ManagedConnection {
    private TcpConnectionRequestInfo cxRequestInfo;
 
    /**
-    * Default constructor
-    * 
+    * ManagedConnection constructor is called by ManagedConnectionFactory therefore it
+    * may take any relevant parameters as needed. This is not limited by the specs.
     * @param mcf The ManagedConnectionFactory
     */
-   public TcpManagedConnection(TcpManagedConnectionFactory mcf, ConnectionRequestInfo cxRequestInfo)
+   public TcpManagedConnection(TcpResourceAdapter ra, TcpManagedConnectionFactory mcf, ConnectionRequestInfo cxRequestInfo)
          throws ResourceException {
+      this.ra = ra;
       this.mcf = mcf;
       this.logwriter = null;
       this.listeners = Collections.synchronizedList(new ArrayList<ConnectionEventListener>(1));
@@ -77,7 +81,7 @@ public class TcpManagedConnection implements ManagedConnection {
     */
    public Object getConnection(Subject subject, ConnectionRequestInfo cxRequestInfo) throws ResourceException
    {
-      logger.debug("getConnection()");
+      logger.debug(()->"getConnection()");
       connection = new TcpConnectionImpl(this, mcf);
       return connection;
    }
@@ -91,7 +95,7 @@ public class TcpManagedConnection implements ManagedConnection {
     */
    public void associateConnection(Object connection) throws ResourceException
    {
-      logger.debug("associateConnection()");
+      logger.debug(()->"associateConnection()");
 
       if (connection == null)
          throw new ResourceException("Null connection handle");
@@ -116,7 +120,7 @@ public class TcpManagedConnection implements ManagedConnection {
     */
    public void cleanup() throws ResourceException
    {
-      logger.debug("cleanup()");
+      logger.debug(()->"cleanup()");
       disassociateConnection();
    }
 
@@ -127,7 +131,7 @@ public class TcpManagedConnection implements ManagedConnection {
     */
    public void destroy() throws ResourceException
    {
-      logger.debug("destroy()");
+      logger.debug(()->"destroy()");
 
       if (socket != null)
             socket.close();
@@ -140,7 +144,7 @@ public class TcpManagedConnection implements ManagedConnection {
     */
    public void addConnectionEventListener(ConnectionEventListener listener)
    {
-      logger.debug("addConnectionEventListener()");
+      logger.debug(()->"addConnectionEventListener()");
       if (listener == null)
          throw new IllegalArgumentException("Listener is null");
       listeners.add(listener);
@@ -153,7 +157,7 @@ public class TcpManagedConnection implements ManagedConnection {
     */
    public void removeConnectionEventListener(ConnectionEventListener listener)
    {
-      logger.debug("removeConnectionEventListener()");
+      logger.debug(()->"removeConnectionEventListener()");
       if (listener == null)
          throw new IllegalArgumentException("Listener is null");
       listeners.remove(listener);
@@ -172,7 +176,6 @@ public class TcpManagedConnection implements ManagedConnection {
       {
          cel.connectionClosed(event);
       }
-
    }
 
    /**
@@ -183,7 +186,7 @@ public class TcpManagedConnection implements ManagedConnection {
     */
    public PrintWriter getLogWriter() throws ResourceException
    {
-      logger.debug("getLogWriter()");
+      logger.debug(()->"getLogWriter()");
       return logwriter;
    }
 
@@ -195,7 +198,7 @@ public class TcpManagedConnection implements ManagedConnection {
     */
    public void setLogWriter(PrintWriter out) throws ResourceException
    {
-      logger.debug("setLogWriter()");
+      logger.debug(()->"setLogWriter()");
       logwriter = out;
    }
 
@@ -229,7 +232,7 @@ public class TcpManagedConnection implements ManagedConnection {
     */
    public ManagedConnectionMetaData getMetaData() throws ResourceException
    {
-      logger.debug("getMetaData()");
+      logger.debug(()->"getMetaData()");
       return new TcpManagedConnectionMetaData();
    }
 
@@ -240,7 +243,7 @@ public class TcpManagedConnection implements ManagedConnection {
 
    public void write(byte[] buffer, int offset, int length)
    {
-      logger.debug("write()");
+      logger.debug(()->"write()");
       socket.write(buffer, offset, length);
    }
 

@@ -26,8 +26,8 @@ public class TcpManagedConnectionMetaData implements ManagedConnectionMetaData
    @Override
    public String getEISProductName() throws ResourceException
    {
-      logger.debug("getEISProductName()");
-      return null; //TODO
+      logger.debug(()->"getEISProductName()");
+      return "Non-specific"; 
    }
 
    /**
@@ -39,8 +39,8 @@ public class TcpManagedConnectionMetaData implements ManagedConnectionMetaData
    @Override
    public String getEISProductVersion() throws ResourceException
    {
-      logger.debug("getEISProductVersion()");
-      return null; //TODO
+      logger.debug(()->"getEISProductVersion()");
+      return "Non-specific"; 
    }
 
    /**
@@ -52,8 +52,8 @@ public class TcpManagedConnectionMetaData implements ManagedConnectionMetaData
    @Override
    public int getMaxConnections() throws ResourceException
    {
-      logger.debug("getMaxConnections()");
-      return 0; //TODO
+      logger.debug(()->"getMaxConnections()");
+      return 0; 
    }
 
    /**
@@ -65,7 +65,7 @@ public class TcpManagedConnectionMetaData implements ManagedConnectionMetaData
    @Override
    public String getUserName() throws ResourceException
    {
-      logger.debug("getUserName()");
-      return null; //TODO
+      logger.debug(()->"getUserName()");
+      return null; 
    }
 }

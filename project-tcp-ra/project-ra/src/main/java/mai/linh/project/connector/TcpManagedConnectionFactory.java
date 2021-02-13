@@ -51,7 +51,7 @@ public class TcpManagedConnectionFactory implements ManagedConnectionFactory, Re
     */
    public Object createConnectionFactory(ConnectionManager cxManager) throws ResourceException
    {
-      logger.debug("createConnectionFactory()");
+      logger.debug(()->"createConnectionFactory()");
       return new TcpConnectionFactoryImpl(this, cxManager);
    }
 
@@ -76,8 +76,8 @@ public class TcpManagedConnectionFactory implements ManagedConnectionFactory, Re
     */
    public ManagedConnection createManagedConnection(Subject subject, ConnectionRequestInfo cxRequestInfo) throws ResourceException
    {
-      logger.debug("createManagedConnection()");
-      return new TcpManagedConnection(this, cxRequestInfo);
+      logger.debug(()->"createManagedConnection()");
+      return new TcpManagedConnection((TcpResourceAdapter)ra, this, cxRequestInfo);
    }
 
    /**
@@ -92,7 +92,7 @@ public class TcpManagedConnectionFactory implements ManagedConnectionFactory, Re
    public ManagedConnection matchManagedConnections(@SuppressWarnings("rawtypes") Set connectionSet,
          Subject subject, ConnectionRequestInfo cxRequestInfo) throws ResourceException
    {
-      logger.debug("matchManagedConnections()");
+      logger.debug(()->"matchManagedConnections()");
       ManagedConnection result = null;
       @SuppressWarnings("rawtypes") 
       Iterator it = connectionSet.iterator();
@@ -117,7 +117,7 @@ public class TcpManagedConnectionFactory implements ManagedConnectionFactory, Re
     */
    public PrintWriter getLogWriter() throws ResourceException
    {
-      logger.debug("getLogWriter()");
+      logger.debug(()->"getLogWriter()");
       return logwriter;
    }
 
@@ -129,7 +129,7 @@ public class TcpManagedConnectionFactory implements ManagedConnectionFactory, Re
     */
    public void setLogWriter(PrintWriter out) throws ResourceException
    {
-      logger.debug("setLogWriter()");
+      logger.debug(()->"setLogWriter()");
       logwriter = out;
    }
 
@@ -140,7 +140,7 @@ public class TcpManagedConnectionFactory implements ManagedConnectionFactory, Re
     */
    public ResourceAdapter getResourceAdapter()
    {
-      logger.debug("getResourceAdapter()");
+      logger.debug(()->"getResourceAdapter()");
       return ra;
    }
 
@@ -151,7 +151,7 @@ public class TcpManagedConnectionFactory implements ManagedConnectionFactory, Re
     */
    public void setResourceAdapter(ResourceAdapter ra)
    {
-      logger.debug("setResourceAdapter()");
+      logger.debug(()->"setResourceAdapter()");
       this.ra = ra;
    }
 

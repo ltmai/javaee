@@ -20,7 +20,7 @@ import org.apache.logging.log4j.Logger;
  */
 @Connector(
    displayName = "TCP outbound Resource Adapter",
-   vendorName = "Community", 
+   vendorName = "LM", 
    eisType = "TCP",
    reauthenticationSupport = false,
    transactionSupport = TransactionSupport.TransactionSupportLevel.NoTransaction)
@@ -30,32 +30,32 @@ public class TcpResourceAdapter implements ResourceAdapter, java.io.Serializable
 
    private static Logger logger = LogManager.getLogger(TcpResourceAdapter.class);
 
-   @ConfigProperty(defaultValue = "Charlie")
-   private String rAExampleConfigProperty;
+   @ConfigProperty(defaultValue = "localhost")
+   private String hostname;
 
    public TcpResourceAdapter()
    {
-      logger.debug("TcpResourceAdapter");
+      logger.debug(()->"TcpResourceAdapter");
    }
 
    /** 
-    * Set rAExampleConfigProperty
-    * @param rAExampleConfigProperty The value
+    * Set hostname
+    * @param hostname The value
     */
-   public void setRAExampleConfigProperty(String rAExampleConfigProperty)
+   public void setRAExampleConfigProperty(String hostname)
    {
-      logger.debug("setRAExampleConfigProperty");
-      this.rAExampleConfigProperty = rAExampleConfigProperty;
+      logger.debug(()->"setHostname");
+      this.hostname = hostname;
    }
 
    /** 
-    * Get rAExampleConfigProperty
+    * Get hostname
     * @return The value
     */
-   public String getRAExampleConfigProperty()
+   public String getHostname()
    {
-      logger.debug("getRAExampleConfigProperty");
-      return rAExampleConfigProperty;
+      logger.debug(()->"getHostname");
+      return hostname;
    }
 
    /**
@@ -67,7 +67,7 @@ public class TcpResourceAdapter implements ResourceAdapter, java.io.Serializable
     */
    public void endpointActivation(MessageEndpointFactory endpointFactory, ActivationSpec spec) throws ResourceException
    {
-      logger.debug("endpointActivation");
+      logger.debug(()->"endpointActivation");
    }
 
    /**
@@ -78,7 +78,7 @@ public class TcpResourceAdapter implements ResourceAdapter, java.io.Serializable
     */
    public void endpointDeactivation(MessageEndpointFactory endpointFactory, ActivationSpec spec)
    {
-      logger.debug("endpointDeactivation");
+      logger.debug(()->"endpointDeactivation");
    }
 
    /**
@@ -89,7 +89,7 @@ public class TcpResourceAdapter implements ResourceAdapter, java.io.Serializable
     */
    public void start(BootstrapContext ctx) throws ResourceAdapterInternalException
    {
-      logger.debug("start");
+      logger.debug(()->"Starting TCP resource adapter");
    }
 
    /**
@@ -98,7 +98,7 @@ public class TcpResourceAdapter implements ResourceAdapter, java.io.Serializable
     */
    public void stop()
    {
-      logger.debug("stop");
+      logger.debug(()->"Stopping TCP resource adapter");
    }
 
    /**
@@ -110,7 +110,7 @@ public class TcpResourceAdapter implements ResourceAdapter, java.io.Serializable
     */
    public XAResource[] getXAResources(ActivationSpec[] specs) throws ResourceException
    {
-      logger.debug("getXAResources");
+      logger.debug(()->"getXAResources");
       return null;
    }
 
@@ -122,8 +122,8 @@ public class TcpResourceAdapter implements ResourceAdapter, java.io.Serializable
    public int hashCode()
    {
       int result = 17;
-      if (rAExampleConfigProperty != null)
-         result += 31 * result + 7 * rAExampleConfigProperty.hashCode();
+      if (hostname != null)
+         result += 31 * result + 7 * hostname.hashCode();
       else
          result += 31 * result + 7;
       return result;
@@ -147,10 +147,10 @@ public class TcpResourceAdapter implements ResourceAdapter, java.io.Serializable
       TcpResourceAdapter obj = (TcpResourceAdapter)other;
       if (result)
       {
-         if (rAExampleConfigProperty == null)
-            result = obj.getRAExampleConfigProperty() == null;
+         if (hostname == null)
+            result = obj.getHostname() == null;
          else
-            result = rAExampleConfigProperty.equals(obj.getRAExampleConfigProperty());
+            result = hostname.equals(obj.getHostname());
       }
       return result;
    }

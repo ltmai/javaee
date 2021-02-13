@@ -10,15 +10,18 @@ public interface TcpConnection
 {
    /**
     * Connection specific API
-    * @return byte[]
+    * @param buffer : the buffer into which the data is read 
+    * @param offset : the start offset in array b at which the data is written 
+    * @param length : the maximum number of bytes to read
+    * @return number of bytes read into buffer or -1 if error occurs
     */
    public int read(byte[] buffer, int offset, int length);
 
    /**
     * Connection specific API
-    * @param buffer
-    * @param offset
-    * @param length
+    * @param buffer : the data to write
+    * @param offset : the start offset in the data
+    * @param length : the number of bytes to write
     */
    public void write(byte[] buffer, int offset, int length);
 
