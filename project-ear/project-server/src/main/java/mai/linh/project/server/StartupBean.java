@@ -32,11 +32,8 @@ public class StartupBean
     @Resource
     private ManagedScheduledExecutorService scheduledExecutorService;
 
-    /**
-     * Instance allows the application to dynamically obtain instances of beans
-     */
     @Inject
-    private Instance<CustomerService> serviceInstance;
+    private CustomerService customerService;
 
     @Inject @Log4J
     private Logger logger;
@@ -49,16 +46,19 @@ public class StartupBean
     @PostConstruct
     public void init() 
     {
-        logger.info("Project-Server starting ...");
+        logger.info(()->"Project-Server starting ...");
         
-        futureDbCleaner = scheduledExecutorService.scheduleWithFixedDelay(this::runDbCleaner, INITIAL_DELAY, FIXED_DELAY, TimeUnit.SECONDS);
+        futureDbCleaner = scheduledExecutorService.scheduleWithFixedDelay(this::runDbCleaner, 
+                                                                          INITIAL_DELAY, 
+                                                                          FIXED_DELAY, 
+                                                                          TimeUnit.SECONDS);
     }
 
     @PreDestroy
     public void cleanup() 
     {
         futureDbCleaner.cancel(true);
-        logger.info("Goodbye!");
+        logger.info(()->"Goodbye!");
     }
 
     /**
@@ -69,22 +69,20 @@ public class StartupBean
         try 
         {
             /**
-             * Check if we have active transaction here: expect no transaction
+             * Check if we have active transaction here: expect no transaction (because StartupBean is a CDI bean)
              * interface javax.transaction.Status:
-             * public static final int STATUS_ACTIVE = 0;
+             * public static final int STATUS_ACTIVE          = 0;
              * public static final int STATUS_MARKED_ROLLBACK = 1;
-             * public static final int STATUS_PREPARED = 2;
-             * public static final int STATUS_COMMITTED = 3;
-             * public static final int STATUS_ROLLEDBACK = 4;
-             * public static final int STATUS_UNKNOWN = 5;
-             * public static final int STATUS_NO_TRANSACTION = 6; 
-             * public static final int STATUS_PREPARING = 7;
-             * public static final int STATUS_COMMITTING = 8;
-             * public static final int STATUS_ROLLING_BACK = 9;
+             * public static final int STATUS_PREPARED        = 2;
+             * public static final int STATUS_COMMITTED       = 3;
+             * public static final int STATUS_ROLLEDBACK      = 4;
+             * public static final int STATUS_UNKNOWN         = 5;
+             * public static final int STATUS_NO_TRANSACTION  = 6; 
+             * public static final int STATUS_PREPARING       = 7;
+             * public static final int STATUS_COMMITTING      = 8;
+             * public static final int STATUS_ROLLING_BACK    = 9;
              */
-            logger.info(Thread.currentThread().getId() + " Scheduled task: Transaction status=" + txReg.getTransactionStatus());
-
-            CustomerService customerService = serviceInstance.get();
+            logger.info(()->" Scheduled task: Transaction status=" + txReg.getTransactionStatus());
 
             customerService.getAllCustomers().forEach(logger::info);
         } 

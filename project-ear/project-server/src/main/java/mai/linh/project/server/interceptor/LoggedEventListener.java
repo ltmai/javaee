@@ -22,7 +22,7 @@ public class LoggedEventListener {
 	 * invoked only after the transaction completed successfully
 	 * @param msg
 	 */
-    public void onSuccess(@Observes(during= TransactionPhase.AFTER_SUCCESS) String msg) {
+    public void onSuccess(@Observes(during=TransactionPhase.AFTER_SUCCESS) String msg) {
         logger.info("[Event] Transaction completed: " + msg);
     }
 
@@ -30,7 +30,7 @@ public class LoggedEventListener {
      * invoked only after the transaction completed with failure
      * @param msg
      */
-    public void onFailure(@Observes(during= TransactionPhase.AFTER_FAILURE) String msg){
+    public void onFailure(@Observes(during=TransactionPhase.AFTER_FAILURE) String msg){
         logger.info("[Event] Transaction failed: " + msg);
     }  
 }

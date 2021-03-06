@@ -39,11 +39,16 @@ import javax.ejb.Startup;
 @AccessTimeout(value=20, unit=TimeUnit.SECONDS) 
 public class Schedulers {
 
+    /**
+     * This method is scheduled to run every 10 seconds, but it actually takes
+     * longer to complete so we expect to get an warning that a previous execution
+     * of timer is still in progress, and the method invocation is skipped.
+     */
     @Lock(LockType.READ)
     @Schedule(hour = "*", minute = "*", second = "*/10", persistent = false)
     public void doSomethingExpensive() {
         try {
-            System.out.println("!!!!!!!!!!!!!!! every 10 seconds !!!!!!!!!!!!!!!");
+            System.out.println("!!!!!!!!!!!!!!! invoked every 10 seconds !!!!!!!!!!!!!!!");
             Thread.sleep(20000);
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -54,7 +59,7 @@ public class Schedulers {
     @Schedule(hour = "*", minute = "*", second = "*/2", persistent = false)
     public void doSomethingLessExpensive() {
         try {
-            System.out.println("************** every 2 seconds ***************");
+            System.out.println("************** invoked every 2 seconds **************");
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();

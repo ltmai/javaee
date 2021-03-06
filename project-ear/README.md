@@ -84,15 +84,25 @@ The referenced resources are automatically added by application server to applic
 </module>
 ```
 
+The depdendencies can be downloaded as follows:
+```cmd
+mvn dependency:copy -Dartifact=org.apache.logging.log4j:log4j-api:2.6.2 -DoutputDirectory=.
+mvn dependency:copy -Dartifact=org.apache.logging.log4j:log4j-core:2.6.2 -DoutputDirectory=.
+mvn dependency:copy -Dartifact=org.apache.logging.log4j:log4j-to-slf4j:2.14.0 -DoutputDirectory=.
+```
+
+Put the JAR files and `module.xml` into `%WILDFLY%/modules/system/layers/base/org/apache/logging/log4j`
+to create the module.
+
 ### JBoss system properties
 
 The following system property is defined in standalone.xml to be referenced by Log4J2 engine.
 The property name can be anything, and not necessarily as in the following example:
 
 ```xml
-    <system-properties>
-        <property name="org.apache.logging.log4j.dir" value="${jboss.server.log.dir}"/>
-    </system-properties>
+<system-properties>
+    <property name="org.apache.logging.log4j.dir" value="${jboss.server.log.dir}"/>
+</system-properties>
 ```
 
 ### Log4j2 configuration
@@ -134,3 +144,28 @@ For more Log4j2 configuration see https://logging.apache.org/log4j/2.x/manual/co
     </Loggers>
 </Configuration>
 ```
+## Avoid using Instance<> to inject bean dynamically
+
+```java
+@Inject
+private Instance<BigBean> bigBean;
+
+// periodically scheduled task
+BigBean bean = bigBean.get()
+bean.soSomething();
+```
+The above code creates a new instance of `BigBean` each time `Instance<>::get` is invoked.
+In my test the created instances seem not garbage collected for non-annotated CDI bean (or
+@Dependent by default) causing increasing use of memory.
+
+The CDI specification says:
+
+> The method `destroy()` instructs the container to destroy the instance. The bean instance 
+> passed to `destroy()` should be a dependent scoped bean instance, or a client proxy for a 
+> normal scoped bean. Applications are encouraged to always call `destroy()` when they no longer 
+> require an instance obtained from `Instance`. All built-in normal scoped contexts support
+> destroying bean instances. An `UnsupportedOperationException` is thrown if the active context 
+> object for the scope type of the bean does not support destroying bean instances.
+
+That may not what you would expect or want it to work. The simpler way would be to inject
+directly using `@Inject` or `JNDI` lookup. 

@@ -2,6 +2,8 @@ package mai.linh.project.server.service;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
 import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
@@ -32,6 +34,18 @@ public class CustomerServiceBean implements CustomerService
 
     @Resource
     TransactionSynchronizationRegistry txReg;
+
+    @PostConstruct
+    public void postConstruct()
+    {
+        logger.info("CustomerServiceBean::postConstruct");
+    }
+
+    @PreDestroy
+    public void preDestroy()
+    {
+        logger.info("CustomerServiceBean::preDestroy");
+    }
 
     @Override
     @Logged(name = "Find all customers")    
