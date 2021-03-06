@@ -1,5 +1,15 @@
 User authentication and authorization with custom Server Authentication Module (on Wildfly)
 
+Add the following into `standalone.xml`:
+
+```xml
+<security-domain name="MySecurityDomain" cache-type="default">
+    <authentication-jaspi>
+        <auth-module code="com.example.jaspic.CustomServerAuthModule" flag="required"/>
+    </authentication-jaspi>
+</security-domain>
+```
+
 For testing the index page shows 2 links:
 
 ```xml
