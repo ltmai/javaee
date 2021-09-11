@@ -1,0 +1,66 @@
+# IronJacamar
+
+## What is IronJacamar
+
+## Resoures
+
+[Reauthentication](https://developer.jboss.org/docs/DOC-16434)
+
+## Glossary
+
+### Reauthentication
+
+A resource adapter can re-authenticate a physical connection (that is, one that already exists 
+in the connection pool under a different security context) to the underlying EIS. A resource 
+adapter performs reauthentication when an application server calls the getConnection method with 
+a security context, passed as a Subject instance, different from the context previously associated 
+with the physical connection.
+
+# Code generator
+
+## Examples
+
+### Generate an simple outbound RA
+```
+┌ C:\temp\codegenerator [19:32:28,46]
+└> java -jar ironjacamar-codegenerator.jar
+Profile version (1.7/1.6/1.5/1.0) [1.7]:
+Type (O/Outbound/I/Inbound/B/Bidirectional) [O]: O
+Package name: com.example.jca.outbound.tcp
+Transaction support (N/NoTransaction/L/LocalTransaction/X/XATransaction) [N]:
+Reauthentication (Y/Yes/N/No) [N]:
+Use annotations (Y/Yes/N/No) [Y]: Y
+Include a ResourceAdapter (Y/Yes/N/No) [Y]:
+Resource adapter class name [AcmeResourceAdapter]: TcpResourceAdapter
+Should the resource adapter class be Serializable (Y/Yes/N/No) [Y]:
+Resource adapter config properties [enter to quit]:
+    Name: RAExampleConfigProperty
+    Type: String
+    Value: Charlie
+
+Resource adapter config properties [enter to quit]:
+    Name:
+Managed connection factory class name [TcpManagedConnectionFactory]:
+Managed connection factory config properties [enter to quit]:
+    Name:
+Use ResourceAdapterAssociation (Y/Yes/N/No) [Y]:
+Managed connection class name [TcpManagedConnection]:
+Use CCI (Y/Yes/N/No) [N]:
+Connection factory interface class name [TcpConnectionFactory]:
+Connection factory implementation class name [TcpConnectionFactoryImpl]:
+Connection interface class name [TcpConnection]:
+Connection implementation class name [TcpConnectionImpl]:
+Add methods to connection interface (Y/Yes/N/No) [N]: Y
+    Method name [enter to quit]: read
+    Return type: byte[]
+    Parameter name [enter to quit]:
+    Exception type:
+    Method name [enter to quit]:
+Additional managed connection factory (Y/Yes/N/No) [N]:
+Include an admin object (Y/Yes/N/No) [N]:
+Generate a MBean class (Y/Yes/N/No) [Y]:
+Integrate EIS test server (Y/Yes/N/No) [N]: Y
+Use JBoss Logging  (Y/Yes/N/No) [N]:
+Build environment [A/Ant/I/Ant+Ivy/M/Maven/G/Gradle] [A]: M
+Code generated
+```
