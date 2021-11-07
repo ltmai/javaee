@@ -1,6 +1,7 @@
 package mai.linh.project.server;
 
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 import javax.ejb.AccessTimeout;
 import javax.ejb.Lock;
@@ -49,7 +50,7 @@ public class Schedulers {
     public void doSomethingExpensive() {
         try {
             System.out.println("!!!!!!!!!!!!!!! invoked every 10 seconds !!!!!!!!!!!!!!!");
-            Thread.sleep(20000);
+            TimeUnit.SECONDS.sleep(11);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -60,7 +61,7 @@ public class Schedulers {
     public void doSomethingLessExpensive() {
         try {
             System.out.println("************** invoked every 2 seconds **************");
-            Thread.sleep(1000);
+            TimeUnit.SECONDS.sleep(1);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

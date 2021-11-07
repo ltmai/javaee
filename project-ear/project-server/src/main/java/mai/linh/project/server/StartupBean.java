@@ -9,7 +9,6 @@ import javax.annotation.Resource;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.enterprise.concurrent.ManagedScheduledExecutorService;
-import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import javax.transaction.TransactionSynchronizationRegistry;
 
