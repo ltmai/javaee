@@ -1,5 +1,6 @@
 package mai.linh.project.server.service;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -47,10 +48,20 @@ public class CustomerServiceBean implements CustomerService
         logger.info("CustomerServiceBean::preDestroy");
     }
 
+    /**
+     * Pitfall when using instance variable in EJB:
+     * The container might not (re)initialize the instance variables 
+     * at every injection. So if you have instance variable in EJB
+     * make sure to (re)initialize it yourself or it may still hold
+     * the old value from last injection. 
+     */
+    private Date initDate = new Date();
+
     @Override
     @Logged(name = "Find all customers")    
     public List<Customer> getAllCustomers() 
     {
+        logger.info("Service created at " + initDate.toString());
         logger.info("Caller name: " + context.getCallerPrincipal().getName());
         logger.info("CustomerServiceBean - Transaction status: " + txReg.getTransactionStatus());
         return db.getAllCustomers();
