@@ -1,7 +1,6 @@
 package mai.linh.project.server;
 
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 
 import javax.ejb.AccessTimeout;
 import javax.ejb.Lock;
